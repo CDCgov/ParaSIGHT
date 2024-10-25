@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/wdpb/parasight/master/assets/schema_input.json",
+    "title": "wdpb/parasight pipeline - params.input schema",
+    "description": "Schema for the file provided with params.input",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "meta": ["id"]
+            },
+            "fastq_1": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "fastq_2": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+            },
+            "pathogen": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Genus of sample pathogen, e.g. Cryptosporidium or Giardia (do not include species here)",
+                "meta": ["pathogen"]
+            },
+            "species": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Species of sample pathogen, e.g. 'C. parvum'",
+                "meta": ["species"]
+            },
+            "subtype": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Subtype/strain/cluster designation of sample pathogen, e.g. IIaA15G2R1",
+                "meta": ["subtype"]
+            },
+            "country": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Country of sample's origin",
+                "meta": ["country"]
+            },
+            "state": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) US state of sample's origin",
+                "meta": ["state"]
+            },
+            "year": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "(Optional) Calendar year of sample origin, in the form YYYY",
+                "meta": ["year"]
+            },
+            "month": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "errorMessage": "(Optional) Calendar month of sample origin, as an integer (e.g. January should be denoted as 1)",
+                "meta": ["month"]
+            },
+            "host": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Host species of sample, e.g. human, cattle, etc.",
+                "meta": ["state"]
+            },
+            "source": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Source material of sample, e.g. stool, dna, etc.",
+                "meta": ["source"]
+            },
+            "casetype": {
+                "type": "string",
+                "pattern": "^[\\S\\s]+$",
+                "errorMessage": "(Optional) Case type of sample, e.g. outbreak or sporadic",
+                "meta": ["casetype"]
+            }
+        },
+        "required": ["sample", "fastq_1"]
+    }
+}
